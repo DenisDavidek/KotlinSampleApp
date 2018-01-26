@@ -1,4 +1,4 @@
-package com.example.denisdavidek.kotlintest
+package com.example.denisdavidek.kotlintest.data
 
 /**
  * Created by denisdavidek on 1/23/18.

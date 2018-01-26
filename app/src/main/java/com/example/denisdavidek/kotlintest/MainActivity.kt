@@ -13,7 +13,8 @@ import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
+import android.widget.Toast
+import com.example.denisdavidek.kotlintest.data.Greeter
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
 
@@ -30,8 +31,8 @@ class MainActivity : LoaderManager.LoaderCallbacks<VideoZNatacania>, AppCompatAc
    }
 
     override fun onLoaderReset(p0: Loader<VideoZNatacania>?) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+
+  }
 
     override fun onCreateLoader(p0: Int, p1: Bundle): Loader<VideoZNatacania> {
       return MainLoader(applicationContext,p1)
@@ -54,7 +55,13 @@ class MainActivity : LoaderManager.LoaderCallbacks<VideoZNatacania>, AppCompatAc
         textView.setText("len tak");
 
 getVideoData()
+  /*      unitPrintHello("AHOJ hahahaha");*/
 
+        unitPrintHello("");
+
+/*        var result = TestNaFunkcie().double(3)*/
+   val result = TestNaFunkcie().doubleIne(10)
+        Toast.makeText(applicationContext," "+ result, Toast.LENGTH_SHORT).show()
         fab_test.setOnClickListener { view ->
             Snackbar.make(view, Greeter("testKotlin").greet() + Greeter("").max(4, 5), Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show()
@@ -64,7 +71,7 @@ getVideoData()
             startActivity(intent)
 
         }
-        btn_plus.setOnClickListener { view ->
+        btn_plus.setOnClickListener { _ ->
             globalOperator = nastavOperator(btn_plus.text.toString())
         }
 
@@ -80,10 +87,10 @@ getVideoData()
             globalOperator = nastavOperator(btn_division.text.toString())
         }
         floatingActionButton.setOnClickListener { view ->
-            zobrazVideo(view, youtubeVideoId)
+            zobrazVideo(youtubeVideoId)
         }
 
-        btn_spocitaj.setOnClickListener { view ->
+        btn_spocitaj.setOnClickListener { _ ->
             try {
                 a = edt_first_number.text.toString().toInt()
                 b = edt_second_number.text.toString().toInt()
@@ -98,8 +105,20 @@ getVideoData()
         }
     }
 
+    fun unitPrintHello(name: String?): Unit {
+        if (name != null) {
+                    Toast.makeText(applicationContext,"hello ${name}",Toast.LENGTH_SHORT).show()
+                }
+        else{
+            Toast.makeText(applicationContext, "Hi there!",Toast.LENGTH_SHORT).show()
 
-    fun zobrazVideo(view: View, id: String) {
+
+
+        }
+
+    }
+
+    fun zobrazVideo(id: String) {
         /*        Intent intent = new Intent(this, VideoActivity.class);
         intent.putExtra(VIDEO_URL_KEY,"https://www.youtube.com/watch?v=xPrDEBnFAzY");
         startActivity(intent);*/

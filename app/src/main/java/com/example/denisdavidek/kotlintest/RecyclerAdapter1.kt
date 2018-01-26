@@ -1,19 +1,17 @@
 package com.example.denisdavidek.kotlintest
 
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import android.widget.Toast
+import com.example.denisdavidek.kotlintest.data.Data
 import kotlinx.android.synthetic.main.recycler_view_item.view.*
 
 /**
  * Created by denisdavidek on 1/23/18.
  */
 
- class RecyclerAdapter1(var dataList: ArrayList<Data>): RecyclerView.Adapter<RecyclerAdapter1.DataViewHolder>() {
+ class RecyclerAdapter1(var dataList: ArrayList<Data>, private val clickedInterface: clickInterface): RecyclerView.Adapter<RecyclerAdapter1.DataViewHolder>() {
 
 
    /* private val mOnClickListener: View.OnClickListener
@@ -44,14 +42,17 @@ import kotlinx.android.synthetic.main.recycler_view_item.view.*
     }
 
 
-    class DataViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+  inner  class DataViewHolder(itemView: View): RecyclerView.ViewHolder(itemView),View.OnClickListener {
 
+      init {
+          itemView.setOnClickListener(this)
+      }
 
-        fun bindItems(data: Data) {
+        override fun onClick(p0: View?) {
+            var clickedPositon = adapterPosition
+            clickedInterface.onItemInteraction(clickedPositon)
 
-            itemView.textView2.setText(data.finalText);
-
-        }
+      }
 
     }
 
